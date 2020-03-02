@@ -1,0 +1,22 @@
+<!doctype html>
+<title>My Guestbook</title>
+
+<h2>Hello Guestbook</h2>
+
+<div>
+  <form id="guestbook-form" action="/msg" method="POST">
+    <input id="message" name="message" type="text"></input>
+    <input type="submit" id="submit"></input>
+  </form>
+</div>
+
+Messages：
+<ul id="msg">
+  {% if not msg %}
+      No Messages
+  {% else %}
+    {% for m in msg %}
+        <li>{{ m }}</li>
+    {% endfor %}
+  {% endif %}
+</ul>

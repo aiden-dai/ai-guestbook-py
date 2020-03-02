@@ -1,0 +1,12 @@
+apiVersion: skaffold/v2alpha3
+kind: Config
+metadata:
+  name: ai-guestbook-py
+build:
+  artifacts:
+  - image: my-guestbook-py
+deploy:
+  kubectl:
+    manifests:
+    - manifests/guestbook.yaml
+    - manifests/redis.yaml
