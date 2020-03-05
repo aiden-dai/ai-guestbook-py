@@ -20,17 +20,25 @@ docker build -t my-guestbook-py .
 docker run --rm -p 8080:8080 --name my-guestbook  --link my-redis:redis my-guestbook-py
 ```
 
-## Run the app in kubernetes (local cluster):
+## Run the app in kubernetes (local cluster) with Istio Ingress:
+
+```bash
+kubectl create ns demo
+kubectl label ns demo istio-injection=enabled
+```
 
 - Use kubectl
 ```bash
+kubectl config set-context --current --namespace=demo
 kubectl apply -f manifests/redis.yaml
 kubectl apply -f manifests/guestbook.yaml
+kubectl apply -f manifests/ingress.yaml
 ```
+
 
 - Use skaffold
 ```bash
 # run in local-cluster
 skaffold config set --global local-cluster true
-skaffold run
+skaffold run -n demo
 ```

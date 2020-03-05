@@ -10,3 +10,4 @@ deploy:
     manifests:
     - manifests/guestbook.yaml
     - manifests/redis.yaml
+    - manifests/ingress.yaml
